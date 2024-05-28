@@ -45,7 +45,7 @@ export default function RootDocsLayout({ children }: { children: ReactNode }) {
         <CodeEditor initialContent={mdxContent} />
       </div>
       <div className="flex-1 h-full min-h-screen">
-        <DocsLayout tree={pageTree} nav={{ enabled: false }} sidebar={{ enabled: false }}>
+        <DocsLayout tree={pageTree} sidebar={{ enabled: false }}>
           {children}
         </DocsLayout>
       </div>

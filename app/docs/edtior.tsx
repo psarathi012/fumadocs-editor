@@ -1,15 +1,16 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
+import * as Prism from "prismjs";
 import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
-import "prismjs/themes/prism.css"; //Example style, you can use another
+import "prismjs/components/prism-markdown";
+import "@/app/prism-one-dark.css";
 import { onChangeFileEdit } from "./onChangeFileEdit";
 
 type CodeEditorProps = {
   initialContent: string;
 };
+
 export default function CodeEditor(props: CodeEditorProps) {
   const [code, setCode] = React.useState(props.initialContent);
 
@@ -21,7 +22,7 @@ export default function CodeEditor(props: CodeEditorProps) {
     <Editor
       value={code}
       onValueChange={(code) => setCode(code)}
-      highlight={(code) => highlight(code, languages.js)}
+      highlight={(code) => Prism.highlight(code, Prism.languages.markdown, "markdown")}
       padding={10}
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
