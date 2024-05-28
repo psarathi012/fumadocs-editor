@@ -3,17 +3,20 @@
 This is a Next.js application generated with
 [Create Fumadocs](https://github.com/fuma-nama/fumadocs).
 
-Run development server:
+> To run the project you would need to run it in `dev` mode ONLY
+
+To get started for the first time with the project run:
+
+```bash
+npm install
+```
+After that is done, you would only need to run the following everytime to start your server and get the app running.
 
 ```bash
 npm run dev
-# or
-pnpm dev
-# or
-yarn dev
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+Once you run the command above, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Learn More
 
