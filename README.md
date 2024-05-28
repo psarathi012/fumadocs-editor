@@ -16,7 +16,7 @@ After that is done, you would only need to run the following everytime to start 
 npm run dev
 ```
 
-Once you run the command above, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once you run the command above, open [http://localhost:3000/docs](http://localhost:3000/docs) with your browser to see the result.
 
 ## Learn More
 
