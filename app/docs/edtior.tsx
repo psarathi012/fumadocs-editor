@@ -13,10 +13,28 @@ type CodeEditorProps = {
 
 export default function CodeEditor(props: CodeEditorProps) {
   const [code, setCode] = React.useState(props.initialContent);
+  const [saveFile, setSaveFile] = React.useState(false);
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.ctrlKey && event.key === "s") {
+      event.preventDefault(); // Prevent the default save behavior
+      setSaveFile(true);
+    }
+  };
 
   useEffect(() => {
     onChangeFileEdit({ filePath: "./content/docs/index.mdx", content: code });
-  }, [code]);
+    setSaveFile(false);
+  }, [saveFile]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <Editor

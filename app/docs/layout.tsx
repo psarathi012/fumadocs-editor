@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import CodeEditor from "./edtior";
 import * as fs from "fs";
 
-export function readFileContent({
+function readFileContent({
   pathToFile,
   buildTimeFallBackPath,
   shouldBeParsedAsJson = false,
