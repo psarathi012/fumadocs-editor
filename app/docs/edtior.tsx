@@ -49,6 +49,7 @@ export default function CodeEditor(props: CodeEditorProps) {
           fontFamily: '"Fira code", "Fira Mono", monospace',
           fontSize: 12,
         }}
+        className="min-h-screen"
       />
       <div className="absolute bottom-0 right-0 p-2 bg-gray-800 text-white">
         Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save
