@@ -12,8 +12,8 @@ type CodeEditorProps = {
 };
 
 export default function CodeEditor(props: CodeEditorProps) {
-  const [code, setCode] = React.useState(props.initialContent);
-  const [saveFile, setSaveFile] = React.useState(false);
+  const [code, setCode] = useState(props.initialContent);
+  const [saveFile, setSaveFile] = useState(false);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.ctrlKey && event.key === "s") {
