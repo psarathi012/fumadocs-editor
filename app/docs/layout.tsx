@@ -3,6 +3,11 @@ import { DocsLayout } from "fumadocs-ui/layout";
 import type { ReactNode } from "react";
 import CodeEditor from "./edtior";
 import * as fs from "fs";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 
 function readFileContent({
   pathToFile,
@@ -40,15 +45,24 @@ export default function RootDocsLayout({ children }: { children: ReactNode }) {
   });
 
   return (
-    <div className="flex min-h-screen w-full items-center divide-x-2 divide-dashed">
-      <div className="w-5/12 h-full min-h-screen">
-        <CodeEditor initialContent={mdxContent} />
-      </div>
-      <div className="flex-1 h-full min-h-screen">
-        <DocsLayout tree={pageTree} sidebar={{ enabled: false }}>
-          {children}
-        </DocsLayout>
-      </div>
-    </div>
+    <ResizablePanelGroup
+      autoSaveId="persistence"
+      direction="horizontal"
+      className="h-screen w-full"
+    >
+      <ResizablePanel collapsible={true} defaultSize={40} minSize={40}>
+        <div className="h-screen overflow-auto">
+          <CodeEditor initialContent={mdxContent} />
+        </div>
+      </ResizablePanel>
+      <ResizableHandle />
+      <ResizablePanel defaultSize={60} minSize={60}>
+        <div className="h-screen overflow-auto">
+          <DocsLayout tree={pageTree} sidebar={{ enabled: false }}>
+            {children}
+          </DocsLayout>
+        </div>
+      </ResizablePanel>
+    </ResizablePanelGroup>
   );
 }

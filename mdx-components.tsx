@@ -14,8 +14,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ...defaultComponents,
     ...components,
     img: ({ src, alt, width, height, ...props }) =>
-      src && alt && width && typeof width === "number" && height && typeof height === "number" ? (
-        <ImageZoom {...props} src={src} alt={alt} width={width} height={height} placeholder="blur" />
+      src &&
+      alt &&
+      width &&
+      typeof width === "number" &&
+      height &&
+      typeof height === "number" ? (
+        <ImageZoom
+          {...props}
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          placeholder="blur"
+        />
       ) : (
         <img {...props} />
       ),

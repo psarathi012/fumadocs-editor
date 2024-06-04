@@ -10,6 +10,7 @@ To get started for the first time with the project run:
 ```bash
 npm install
 ```
+
 After that is done, you would only need to run the following everytime to start your server and get the app running.
 
 ```bash

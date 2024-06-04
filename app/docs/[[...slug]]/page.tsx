@@ -3,7 +3,11 @@ import type { Metadata } from "next";
 import { DocsPage, DocsBody } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 
-export default async function Page({ params }: { params: { slug?: string[] } }) {
+export default async function Page({
+  params,
+}: {
+  params: { slug?: string[] };
+}) {
   const page = getPage(params.slug);
 
   if (page == null) {
@@ -15,8 +19,14 @@ export default async function Page({ params }: { params: { slug?: string[] } }) 
   return (
     <DocsPage toc={page.data.exports.toc}>
       <DocsBody>
-        <h1 className="text-3xl font-bold text-foreground sm:text-4xl">{page.data.title}</h1>
-        {page.data.description ? <p className="mb-8 text-base text-muted-foreground">{page.data.description}</p> : null}
+        <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
+          {page.data.title}
+        </h1>
+        {page.data.description ? (
+          <p className="mb-8 text-base text-muted-foreground">
+            {page.data.description}
+          </p>
+        ) : null}
         <MDX />
       </DocsBody>
     </DocsPage>
