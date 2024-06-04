@@ -43,7 +43,9 @@ export default function CodeEditor(props: CodeEditorProps) {
       <Editor
         value={code}
         onValueChange={(code) => setCode(code)}
-        highlight={(code) => Prism.highlight(code, Prism.languages.markdown, "markdown")}
+        highlight={(code) =>
+          Prism.highlight(code, Prism.languages.markdown, "markdown")
+        }
         padding={10}
         style={{
           fontFamily: '"Fira code", "Fira Mono", monospace',
@@ -51,15 +53,15 @@ export default function CodeEditor(props: CodeEditorProps) {
         }}
         className="min-h-screen"
       />
-      <div className="absolute bottom-0 right-0 p-2 bg-gray-800 text-white">
+      <div className="absolute bottom-0 right-0 bg-gray-800 p-2 text-white">
         Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save
       </div>
       {saveFile ? (
-        <div className="absolute top-0 left-0 flex justify-center items-center h-screen w-full bg-black/40">
+        <div className="absolute left-0 top-0 flex h-screen w-full items-center justify-center bg-black/40">
           <div role="status">
             <svg
               aria-hidden="true"
-              className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"
+              className="inline h-8 w-8 animate-spin fill-gray-600 text-gray-200 dark:fill-gray-300 dark:text-gray-600"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
