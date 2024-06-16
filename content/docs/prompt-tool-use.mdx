@@ -1,0 +1,42 @@
+---
+title: Use prompt tools in prompt
+---
+
+# Adding prompt tool in the prompt configuration
+You can create a prompt tool in Maxim in two ways:
+
+To use the Prompt tool:
+
+1. Navigate to the single prompt section.
+2. Choose or create a new prompt
+3. Choose and add a prompt tool in the prompt configuration.
+
+For this example we will use the prompt tool that we have built in <a href="https://platform.openai.com/docs/guides/function-calling"><code>Create a prompt tool</code></a>
+
+<img src="./Library/Prompt-tools/prompt-tool-use/img1.png" alt="prompt tools" />
+
+<Callout title="Note" type="info">
+  You can also add a prompt tool to the prompt configuration for a selected prompt in multiple prompt
+</Callout>
+
+# Running the prompt configured with prompt tool
+
+When in the system prompt instruction is given - “you are an expert travel accountant get all the city names from the user input and maintain the order and do call the function to give a total price”.
+
+In the user prompt  we mention a list of travel destinations, the LLM automatically recognizes the need to employ the "Total_Travel_Price" Prompt tool and returns the calculated total fare price.
+
+<img src="./Library/Prompt-tools/prompt-tool-use/img2.png" alt="prompt tools" />
+
+The calculated total fare amounts to $14,691. This amount can then be used as needed; for example, it can be provided as input to the model to compose a letter addressed to the HR department, formally requesting reimbursement.
+
+<Callout title="Note" type="info">
+You can attach multiple prompt tools to an individual prompt to validate the model's ability to recognise user input and appropriately select the correct prompt tool to execute
+</Callout>
+
+
+<Cards>
+  <Card title="Overview" href="https://nextjs.org/docs" />
+  <Card title="Create a prompt tool" href="https://fumadocs.vercel.app" />
+  
+</Cards>
+

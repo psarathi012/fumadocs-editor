@@ -1,0 +1,37 @@
+---
+title: Overview 
+description: Function calling is the capability to connect LLMs to external tools and APIs, enabling effective tool usage and interaction with external systems. This functionality allows LLMs to execute specific tasks and fetch data by invoking predefined functions based on natural language prompts. On our platform, you can explore function calling through the use of Prompt Tools. This allows you to mimic and test an agentic flow. 
+---
+
+<Callout  type="info">
+  At the time of writing this doc, prompt tools are only compatible with some models. Only openAI models and Anthropic models support it.
+</Callout>
+
+# Create a prompt tool
+You can create a prompt tool in Maxim in two ways:
+
+- You can create prompt tools by writing functions directly within the editor. Read more <a href="https://platform.openai.com/docs/guides/function-calling"><code>here</code></a>
+
+<img src="./Library/Prompt-tools/Prompt-tools-overview/img1.png" alt="prompt tools" />
+
+- Alternatively, you can integrate functions exposed through APIs for use as prompt tools in your prompts. Read more about this here
+
+<img src="./Library/Prompt-tools/Prompt-tools-overview/img2.png" alt="prompt tools" />
+# Mechanism of prompt tool
+
+Here is a dummy prompt tool for your reference. "Pincode" is a prompt tool that returns the name of the place corresponding to a given pincode. The "Pincode" tool is sent to the model along with the user prompt.
+
+<img src="./Library/Prompt-tools/Prompt-tools-overview/img3.png" alt="prompt tools" />
+# Use a prompt tool
+
+You can add a prompt tool to a prompt through its configuration. Additionally, you can attach multiple prompt tools to an individual prompt to validate the model's ability to recognize user input and appropriately select the correct prompt tool for function execution. For more information, please visit this <a href="https://platform.openai.com/docs/guides/function-calling"><code>page</code></a>.
+
+<img src="./Library/Prompt-tools/Prompt-tools-overview/img4.png" alt="prompt tools" />
+
+
+<Cards>
+  <Card title="Create a prompt tool" href="https://nextjs.org/docs" />
+  <Card title="Use a prompt tool" href="https://fumadocs.vercel.app" />
+  
+</Cards>
+

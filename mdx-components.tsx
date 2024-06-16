@@ -10,6 +10,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import LoomVideo from "./loomVideo";
 
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...defaultComponents,

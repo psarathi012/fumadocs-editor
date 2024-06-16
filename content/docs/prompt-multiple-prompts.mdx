@@ -1,0 +1,71 @@
+---
+title: Multiple Prompts
+description: The Prompt Experiment Playground enables experimentation with prompts and models, offering a robust experimentation capability for the users.
+---
+
+# Bulk prompt experimentation
+
+1. To create a Prompt Experiment, click on the "+" icon located on the left sidebar.
+2. You can only select a prompts that are already created in <a style={{color:"#FFA500"}} href=""><code>Single Prompt</code></a>
+
+<img src="./Evaluate/Prompts/Multiple_prompts/img1.png" alt="prompt playground" />
+
+3. Select a Model from the dropdown
+
+<img src="./Evaluate/Prompts/Multiple_prompts/img2.png" alt="prompt playground" />
+
+4. Click the "+" icon to add more models shown below
+ 
+<img src="./Evaluate/Prompts/Multiple_prompts/img3.png" alt="adding prompts" />
+
+Finally after configuration it looks like this,  we have selected GPT-4,Haiku and GPT 4o for a single Prompt (Entity Recognition version 11 in our case) thus allowing us to see different model response on the same prompt.
+
+# Run multiple prompt
+Let’s a take two case studies to discuss the usefulness of multiple prompts.
+
+### Multiple model on single prompt experiment
+In this experiment, we aim to recognise entities from a letter provided as text context, as discussed in the Single Prompt. The system prompt is structured as follows:
+<Callout title="System Prompt" type="info">
+  `Identify all entities
+For the purpose of this task an entity is defined as a "person", "organization", or "location".
+Limit your response to specific entities - ignore vague responses like "employees".
+Display the results as JSON. The key will be the entity type that corresponds to a list of entities values.
+and add locations too
+refer to this {context} for answering`
+</Callout>
+
+In the system prompt the Model is instructed to return the output in a JSON form.
+
+After putting the user prompt as
+<img src="./Evaluate/Prompts/Multiple_prompts/img4.png" alt="prompts" />
+
+In this experiment, we aim to recognize entities from a letter provided as text context, as discussed in the Single Prompt. The system prompt is structured as follows: 
+
+
+In the system prompt the Model is instructed to return the output in a JSON form.
+After putting the user prompt as
+
+<Callout title="User Prompt" type="info">
+  `List down all the entities`
+</Callout>
+
+<img src="./Evaluate/Prompts/Multiple_prompts/img5.png" alt="prompts" />
+
+From all three models, we receive outputs along with metrics such as latency, cost, and token counts for each model, providing valuable information for assessment. In the analysis, it's observed that Haiku model missed several organization names and incorrectly categorized "Ferrovial" as a person, while it's an organization. On the other hand, GPT-4 and GPT-4o models overlooked person names. These observations enable informed judgments regarding the performance and accuracy of each model.
+
+### Multiple Prompt with Single Models
+<img src="./Evaluate/Prompts/Multiple_prompts/img6.png" alt="prompts" />
+
+In a similar experiment, we opt for GPT-4 as the model for all three prompts. However, we select different versions of the Entity Recognition Prompt (V-10, V-11, V-14) and conduct the same experiment as described above. This allows us to evaluate and compare which prompt version yields the best results in terms of entity recognition accuracy.
+
+<Callout title="Note" type="info">
+  <code>you can choose a maximum of five different prompts for side by side comparison.</code>
+</Callout>
+
+
+<Cards>
+  <Card title="Prompt" href="https://nextjs.org/docs" />
+  <Card title="Single Prompt" href="https://fumadocs.vercel.app" />
+  <Card title="Prompt Chains" href="https://fumadocs.vercel.app" />
+
+</Cards>
