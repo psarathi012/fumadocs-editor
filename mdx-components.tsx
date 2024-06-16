@@ -8,6 +8,7 @@ import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
+import LoomVideo from "./loomVideo";
 
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -44,5 +45,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Tab: (props) => <Tab {...props} />,
     Tabs: (props) => <Tabs {...props} />,
     TypeTable: (props) => <TypeTable {...props} />,
+    LoomVideo,
   };
 }
