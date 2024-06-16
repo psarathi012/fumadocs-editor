@@ -1,0 +1,127 @@
+---
+title:  Create a prompt tool
+
+---
+# Create a function via code in the editor
+Creating a prompt tool involves developing a function tailored to a specific task, then making it accessible to LLM models by exposing it as a prompt tool. This allows you to mimic and test an agentic flow. 
+
+For creating a prompt tool:
+
+- Go to the left navigation bar.
+- Click on the "Prompts Tools" tab.
+- This will direct you to the Prompt Tools page.
+- Click on the + button.
+
+<img src="./Library/Prompt-tools/prompt-tools-create/img1.png" alt="prompt tool" />
+
+- You have the option to select "Code" as the tool type.
+- Click the "Create" button.
+- Proceed to write your own custom function in javascript.
+
+<img src="./Library/Prompt-tools/prompt-tools-create/img3.png" alt="prompt tool" />
+Within the interface there is  a designated area to input code. Adjacent to this, on the right-hand side, you can provide relevant inputs tailored to the function's requirements. Upon execution, the output is displayed in the console located at the bottom of the screen.
+
+<img src="./Library/Prompt-tools/prompt-tools-create/img3.png" alt="prompt tool" />
+In this example, we are creating a Prompt tool to calculate the total fare for traveling through a list of cities using a predefined fare map. This prompt tool can then be attached to single prompts.
+
+Here is the code snippet for the prompt tool:
+
+```js title="tool.js"
+const pricesMap = {
+    "London_Barcelona": 3423,
+    "Barcelona_London": 3500,
+    "London_Chicago": 3021,
+    "Chicago_London": 3670,
+    "London_Madrid": 6375,
+    "Madrid_London": 6590,
+    "London_Paris": 5621,
+    "Paris_London": 5560,
+    "Barcelona_Chicago": 3000,
+    "Chicago_Barcelona": 3890,
+    "Barcelona_Madrid": 4000,
+    "Madrid_Barcelona": 4321,
+    "Barcelona_Paris": 2034,
+    "Paris_Barcelona": 2041,
+    "Chicago_Madrid": 6987,
+    "Madrid_Chicago": 6456,
+    "Chicago_Paris": 3970,
+    "Paris_Chicago": 3256,
+    "Madrid_Paris": 4903,
+    "Paris_Madrid": 4678
+
+};
+
+function Travel_Prices(st1, st2) {
+    const key1 = `${st1}_${st2}`;
+    const key2 = `${st2}_${st1}`;
+
+    if (pricesMap[key1] !== undefined) {
+        return pricesMap[key1];
+    } else if (pricesMap[key2] !== undefined) {
+        return pricesMap[key2];
+    } else {
+        return "Price not found for the given stations";
+    }
+}
+
+function Total_Travel_Price(cities) {
+    if (cities.length < 2) {
+        return "At least two cities are required to calculate travel price";
+    }
+    
+    let total_price = 0;
+    
+    for (let i = 0; i < cities.length - 1; i++) {
+        const price = Travel_Prices(cities[i], cities[i+1]);
+        if (typeof price === "string") {
+            return price; // Return the error message if price not found
+        }
+        total_price += price;
+    }
+    
+    return total_price;
+}
+  ```
+
+# Bring your custom functions via APIs
+In Maxim you can expose function call via APIs. We generate function schema based on the Query Parameters and Payload. We collect variables from both of these and add them to function call / tools call object while sending it to the model.
+
+For example
+
+- If your payload looks like
+
+```js title="payload.js"
+{
+	"stock": "AAPL"
+}
+
+ ```
+ 
+-  We convert this into JSON schema and while making requests to the model, we send the payload as
+
+```js title="payload.js"
+{
+	"type": "function",
+	"function": {
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"stock": {
+					"type": "string"
+				}
+			}
+		},
+		"name": "clt473gri0006yzrl26rz79iu", // This is the ID of the function.
+		"description": "This function helps buying the stocks" // This is the description of the function.
+	}
+}
+
+ ```
+
+
+<Cards>
+  <Card title="AI Evaluators" href="https://nextjs.org/docs" />
+  <Card title="Machine Evaluators" href="https://fumadocs.vercel.app" />
+  
+</Cards>
+
