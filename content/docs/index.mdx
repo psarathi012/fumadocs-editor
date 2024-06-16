@@ -1,17 +1,32 @@
 ---
-title: Hello World
-description: Your first document
+title: Prompt chains
+description: Layering multiple prompts to generate a final output is `Prompt chain`, where each prompt builds upon the previous one to refine the response. 
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`. and now that is gone.
+ Photos will be added after debugging
+ # Create a prompt chain
+<img src="./Prompt_chain/img1.png" alt="chameleon" />
 
-## What is Next?
+In the above you can see two prompts chained together
 
+1. Prompt 1: Given a travel itinerary model should do a function call (use Prompt tool which is configured) and return the travel cost from one city to another (example explained in <a style={{color:"#FFA500"}} href="">`Prompt tools`</a>)
+2. Prompt 2: After obtaining the travel cost from the previous prompt, it should generate a reimbursement letter to HR, including the travel cost details.
+
+<img src="./Prompt_chain/img2.png" alt="chameleon" />
+
+Then you can run the prompt sequence by entering user input on the right side of the panel.
+
+In this example, the model first calculates the travel cost from Paris to Madrid, then from Madrid to London, and finally from London to Barcelona `Prompt 1`. Subsequently, the model drafts an email to HR requesting reimbursement and includes the total travel cost `Prompt 2`.
+
+# Testing a prompt chain
+<img src="./Prompt_chain/img3.png" alt="chameleon" />
+
+You can evaluate the prompt chain outputs using the <a style={{color:"#FFA500"}} href="">`evaluators`</a> and review the reports from <a style={{color:"#FFA500"}} href="">`Runs`</a>.
+
+ 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-  <Card title="Learn" />
-  <Card title="Doubt" />
+  <Card title="AI Evaluators" href="https://nextjs.org/docs" />
+  <Card title="API-Based Evaluators" href="https://fumadocs.vercel.app" />
+  
 </Cards>
 
-<img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" height={200} width={200} alt="chameleon" />

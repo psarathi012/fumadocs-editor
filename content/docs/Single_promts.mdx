@@ -1,0 +1,111 @@
+---
+title: Single Prompt
+description: The Single Prompt feature in Maxim allows you to tailor your system and user prompts with precision. This functionality enables you to customize prompts to meet specific needs and evaluate their effectiveness by executing a test run. It provides a focused environment for optimizing individual prompts, ensuring they perform optimally before deploying them in larger, more complex workflows.
+---
+
+# Create a prompt
+To create a new Prompt:
+<Steps>
+<Step>
+**Navigate to the "Prompt" tab**
+</Step>
+<Step>
+ **Choose "Single Prompt"**
+</Step>
+<Step>
+ **Click the "+" icon.**
+</Step>
+<Step>
+ **You can choose to create a new prompt or a folder to better organize your prompts.**
+</Step>
+<Step>
+ **A dialog box will then appear, allowing you to name your new prompt and assign it to an existing folder for better organization.**
+</Step>
+</Steps>
+<img src="./Single_Prompt/img1.png" alt="chameleon" />
+<img src="./Single_Prompt/img2.png" alt="chameleon" />
+
+
+# Selecting Models 
+<img src="./Single_Prompt/img3.png" alt="chameleon" />
+In our Single Prompt playground, you have the flexibility to select from a variety of models for testing and evaluation. This feature allows you to experiment with different model configurations to determine which one best suits your needs. 
+
+
+# Available Providers
+
+You can use any model from following providers in the Prompt playground.
+
+- OpenAI
+- Microsoft Azure
+- Google
+- Anthropic
+- Hugging Face
+- Together
+- AWS Bedrock
+- Groq
+
+
+# Configuration
+<img src="./Single_Prompt/img4.png" alt="chameleon" />
+
+You can also configure settings such as `temperature`, `max tokens`, and `logit bias`. Additionally, you can include <a style={{color:"#FFA500"}} href="https://www.w3schools.com">`Prompt tools`</a>  for function calls, add `custom text` to stop the model from generating.Also there are some Maxim specific configurations like `Tags`.
+
+
+# Tags
+You can use tags to make prompts uniquely identifiable. These tags can then be utilized by teams using SDKs to perform specific tasks.
+
+```js title="tags.js"
+test("fetch prompts using tags", async () => {
+	const prompt = await maxim.getPrompt(
+		promptId,
+		new QueryBuilder()
+			.and()
+			.deploymentVar("Environment", "test")
+			.tag("CustomerId", 1234)
+			.tag("grade", "A")
+			.tag("test", true)
+			.exactMatch()
+			.build(),
+	);
+	expect(prompt.promptId).toBe(promptId);
+	expect(prompt.versionId).toBe(config.dev.testAndTagsCustomerIdGradeAndTest);
+	expect(prompt.version).toBe(5);
+});
+```
+For example, in the code block above, the tags `CustomerId=1234`, `grade=A`, and `test=true` are assigned to a specific prompt. These tags make the prompt easily identifiable and can be used for targeted tasks.
+
+
+# Adding Context
+<img src="./Single_Prompt/img5.png" alt="chameleon" />
+
+By clicking the `+ Add Context` button, you can enhance your data with additional context from various sources. You have the option to:
+
+1. **Text**: Directly input the entire text as context.
+2. **JSON**: Input context in JSON format.
+3. **Custom Endpoint**: Connect to your own vector database to retrieve and add context.
+
+
+# Prompt Versioning
+<img src="./Single_Prompt/img6.png" alt="chameleon" />
+
+In our platform, you can save different `versions` of your prompts, allowing you to track changes, review and revert to previous iterations, and compare different versions to optimize performance. This also captures the authors and the created time ,so that you have complete visibility on the prompt changes.
+
+
+# Prompt Deployments
+
+The Prompt deployment workflow is designed for flexibility and reliability in managing how prompts are used across different environments and conditions. Users with appropriate access can deploy different versions of prompts tailored to specific rules, such as the environment (e.g., `production` or `staging`) and `tenant_id`. This granular control allows for targeted prompt deployment, ensuring that the right version is used in the right context. Setting up these rules is straightforward: pick a version, click `Deplo`y, set the right `deployment variables` and `rules`, and `deploy`. For example, a user can specify that a certain prompt version is to be deployed only in the production environment or only to users with a specific `tenant_id`.
+<img src="./Single_Prompt/img7.png" alt="chameleon" />
+
+
+# Prompt Testing
+<img src="./Single_Prompt/img8.png" alt="chameleon" />
+
+You can also evaluate your prompts by triggering a <a style={{color:"#FFA500"}} href="https://www.w3schools.com">`test run`</a>.
+
+
+<Cards>
+  <Card title="Prompt" href="https://nextjs.org/docs" />
+  <Card title="Prompt Experiments" href="https://fumadocs.vercel.app" />
+  <Card title="Prompt Chains" href="https://fumadocs.vercel.app" />
+
+</Cards>

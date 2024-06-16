@@ -1,0 +1,53 @@
+---
+title: Bring your application to Maxim 
+description: Workflows allow you to expose your AI application to Maxim. 
+---
+
+ Photos will be added after debugging
+# Configuration
+HTTP workflow allows you to map your workflow’s API endpoint with the Maxim framework. You will need to enter the URL of the API endpoint to your AI application/feature and if necessary, add headers and parameters to your request. 
+
+<img src="./img/img1.png" alt="chameleon" />
+
+<Callout title="Title" type="info">
+In this pic we can show where to put the API end point also add another photo explaining how to map the output of the API to evaluate
+</Callout>
+
+# Adding input and context
+
+<img src="./img/img1.png" alt="chameleon" />
+
+You can then configure the payload including the input and context; the $input or $context in the payload will be replaced by the input that we will define in the <a style={{color:"#FFA500"}} href="">`test dataset`</a>. 
+
+# Mapping the output for evaluation
+
+<img src="./img/img1.png" alt="chameleon" />
+Once configured, you can fetch the responses of the API endpoint, select whichever response you want to evaluate and save the workflow. Like here in the above photo, we are mapping the output to `data.response`.
+
+# Triggering a Test Run 
+<img src="./img/img1.png" alt="chameleon" />
+To trigger a test run,  you can follow these steps:
+<Steps>
+<Step>
+**Select or add a dataset to the workflow. This dataset should contain the expected input, expected output, and the retrieved context for each input.**
+</Step>
+<Step>
+**Add evaluators from the evaluator store, accessible from the right panel.**
+</Step>
+<Step>
+**Select the desired evaluators by toggling them on.**
+</Step>
+<Step>
+**Initiate the test run.**
+</Step>
+</Steps>
+You can view detailed reports and other information in the <a style={{color:"#FFA500"}} href="">`Runs`</a> tab.
+
+
+ 
+<Cards>
+  <Card title="AI Evaluators" href="https://nextjs.org/docs" />
+  <Card title="API-Based Evaluators" href="https://fumadocs.vercel.app" />
+  
+</Cards>
+

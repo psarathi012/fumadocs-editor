@@ -1,0 +1,139 @@
+---
+title: Prompt tools 
+description: Function Calling is the capability to reliably connect LLMs to external tools and APIs, enabling effective tool usage and interaction with external systems. This functionality allows LLMs to execute specific tasks and fetch data by invoking predefined functions based on natural language prompts. On our platform, you can explore function calling through the use of Prompt Tools.
+---
+# Function Calling use cases
+1. **Conversational Agents**: Create advanced chatbots that answer complex questions by accessing external APIs or knowledge bases, providing more relevant and useful responses.
+2. **Natural Language Understanding**: Convert natural language into structured JSON data, extract structured data from text, and perform tasks such as named entity recognition, sentiment analysis, and keyword extraction.
+3. **Math Problem Solving**: Define custom functions to solve complex mathematical problems requiring multiple steps and advanced calculations.
+4. **API Integration**: Integrate LLMs with external APIs to fetch data or perform actions based on input, useful for building QA systems or creative assistants by converting natural language into valid API calls.
+5. **Information Extraction**: Extract specific information from given inputs, such as retrieving relevant news stories or references from an article.
+
+# Configuration of Prompt tools
+To access Prompt Tools:
+    - Navigate to the top navigation bar.
+    - Click on the `Prompt tools` tab.
+This will direct you to the `Prompt Tools` page.
+    - Here, you can explore and utilize the <a href="https://platform.openai.com/docs/guides/function-calling">`function calling`</a> capabilities of our platform.
+<img src="./Prompt_tools/img1.png" alt="chameleon" />
+
+# Create a Function based Prompt tool   
+An effective approach to crafting a `Prompt tool` involves initially developing a `function` tailored to a specific task, then making it accessible to LLM models by exposing it as a `Prompt tool`.
+
+<img src="./Prompt_tools/img2.png" alt="chameleon" />
+
+When creating a Prompt tool:
+- Click on the + button.
+- You have the option to select "Code" as the tool type.
+- Click the "Create" button.
+- Proceed to write your own custom function.
+
+
+<img src="./Prompt_tools/img3.png" alt="chameleon" />
+Within the interface, users are presented with a designated area to input code. Adjacent to this, on the right-hand side, users can provide relevant inputs tailored to their function's requirements. Upon execution, the output is displayed in the console located at the bottom of the screen.
+
+
+```js title="prompt_tools.js"
+const pricesMap = {
+    "London_Barcelona": 3423,
+    "Barcelona_London": 3500,
+    "London_Chicago": 3021,
+    "Chicago_London": 3670,
+    "London_Madrid": 6375,
+    "Madrid_London": 6590,
+    "London_Paris": 5621,
+    "Paris_London": 5560,
+    "Barcelona_Chicago": 3000,
+    "Chicago_Barcelona": 3890,
+    "Barcelona_Madrid": 4000,
+    "Madrid_Barcelona": 4321,
+    "Barcelona_Paris": 2034,
+    "Paris_Barcelona": 2041,
+    "Chicago_Madrid": 6987,
+    "Madrid_Chicago": 6456,
+    "Chicago_Paris": 3970,
+    "Paris_Chicago": 3256,
+    "Madrid_Paris": 4903,
+    "Paris_Madrid": 4678
+
+};
+
+function Travel_Prices(st1, st2) {
+    const key1 = `${st1}_${st2}`;
+    const key2 = `${st2}_${st1}`;
+
+    if (pricesMap[key1] !== undefined) {
+        return pricesMap[key1];
+    } else if (pricesMap[key2] !== undefined) {
+        return pricesMap[key2];
+    } else {
+        return "Price not found for the given stations";
+    }
+}
+
+function Total_Travel_Price(cities) {
+    if (cities.length < 2) {
+        return "At least two cities are required to calculate travel price";
+    }
+    
+    let total_price = 0;
+    
+    for (let i = 0; i < cities.length - 1; i++) {
+        const price = Travel_Prices(cities[i], cities[i+1]);
+        if (typeof price === "string") {
+            return price; // Return the error message if price not found
+        }
+        total_price += price;
+    }
+    
+    return total_price;
+}
+```
+In this demonstration, we're creating a Prompt tool designed to calculate the total fare for traveling within a list of cities, utilizing a predefined map of city fares.
+
+<img src="./Prompt_tools/img4.png" alt="chameleon" />
+
+To utilize this `Prompt tool`, navigate to the Prompts(hyperlink) section and integrate it into any Prompt configuration. Once selected, when the user provides a prompt mentioning a list of travel destinations which can be seen in this image above, the LLM automatically recognizes the need to employ the "Total_Travel_Price" Prompt tool and returns the calculated total fare price.
+
+<img src="./Prompt_tools/img5.png" alt="chameleon" />
+
+The calculated total fare amounts to `$14691`, which can then be utilized to compose a letter addressed to the HR department, formally requesting reimbursement as per the requirements.🚀
+
+# API based Prompt Tools
+
+Here you can expose function call via `APIs`. We generate function schema based on the Query Parameters and Payload. We collect variables from both of these and add them to `function call` / `Prompt tool call` object while sending it to the model.
+
+For example
+
+- If your `payload` looks like
+```js title="config.js"
+{
+	"stock": "AAPL"
+}
+```
+- We convert this into `JSON schema` and while making requests to the model, we send the `payload` as
+```js title="schema.js"
+{
+	"type": "function",
+	"function": {
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"stock": {
+					"type": "string"
+				}
+			}
+		},
+		"name": "clt473gri0006yzrl26rz79iu", // This is the ID of the function.
+		"description": "This function helps buying the stocks" // This is the description of the function.
+	}
+}
+```
+
+
+<Cards>
+  <Card title="Prompts" href="https://nextjs.org/docs" />
+  <Card title="Prompt Experiment" href="https://fumadocs.vercel.app" />
+  
+</Cards>
+

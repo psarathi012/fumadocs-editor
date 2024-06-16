@@ -1,0 +1,66 @@
+---
+title: Is the endpoint on localhost? 
+description: Use NGROK 
+---
+
+```py title="flask.py"
+from flask import Flask
+
+# Flask constructor takes the name of 
+app = Flask(__name__)
+
+@app.route('/rag',methods=['POST'])
+def rag_output():
+    body = request.get_json()
+    print(body)
+    output = runPrompt(body['query'])
+    response = {'response':output}
+    return response
+
+# main driver function
+if __name__ == '__main__':
+
+    # run() method of Flask class runs the application 
+    # on the local development server.
+    app.run()
+```
+In this example, we have built a demo RAG application using `Google’s PaLM` model based on `"Harry Potter and the Sorcerer's Stone - CHAPTER ONE"`. The application is served locally through a Flask endpoint at `http://127.0.0.1:5000/rag`.
+
+To test your endpoint outputs on Maxim AI, you need a public API. You can achieve this by using `Ngrok`, which makes the endpoint public through tunneling.
+
+# Setup Ngrok
+You can follow these steps or refer to the <a style={{color:"#FFA500"}} href="https://ngrok.com/docs/getting-started/">`Ngrok`</a> documentation.
+
+To install Ngrok on a Mac, use the following command:
+
+```shell 
+brew install ngrok/ngrok/ngrok
+```
+Next, connect your `Ngrok` agent to your Ngrok account. If you haven't already, sign up for an Ngrok account and copy your `authtoken` from your Ngrok dashboard.
+
+Run the following command in your terminal to install the authtoken and connect the Ngrok agent to your account:
+```shell 
+ngrok config add-authtoken <TOKEN>
+```
+Start `Ngrok` by running the following command.
+
+```shell 
+ngrok http http://localhost:5000
+
+```
+We assume you have a working web application listening at `http://localhost:5000` If your app is listening on a different URL, adjust the command accordingly.
+
+You will see something similar to the following console UI in your terminal.
+
+<img src="./img/img1.png" alt="chameleon" />
+You can now take this forwarding URL and use it in our platform by following the steps mentioned in <a style={{color:"#FFA500"}} href="https://ngrok.com/docs/getting-started/">`Bring your application to Maxim`</a>
+
+ 
+
+ 
+<Cards>
+  <Card title="AI Evaluators" href="https://nextjs.org/docs" />
+  <Card title="API-Based Evaluators" href="https://fumadocs.vercel.app" />
+  
+</Cards>
+

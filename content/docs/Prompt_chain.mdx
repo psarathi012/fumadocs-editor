@@ -1,0 +1,38 @@
+---
+title: Prompt chain
+description: Layering multiple prompts to generate a final output is Prompt chain, where each prompt builds upon the previous one to refine the response. 
+---
+
+
+
+<img src="./Prompt_chain/img1.png" alt="chameleon" />
+
+In the above picture, you can see two prompts chained together
+
+1. Prompt 1: Given a travel itinerary model should call do a `function call` (use Prompt tool which is configured) and return the travel cost from one city to another (example explained in <a style={{color:"#FFA500"}} href="https://www.w3schools.com">`Prompt Tool`</a>
+
+2. Prompt 2: After obtaining the travel cost from the previous prompt, it should generate a reimbursement letter to HR, including the travel cost details.
+
+<img src="./Prompt_chain/img2.png" alt="chameleon" />
+
+Then you can run the prompt sequence by entering `user input` on the right side of the panel.
+
+In this example, the model first calculates the travel cost from Paris to Madrid, then from Madrid to London, and finally from London to Barcelona `(Prompt 1)`. Subsequently, the model drafts an email to HR requesting reimbursement and includes the total travel cost `(Prompt 2)`.
+
+Prompt chains also support image inputs
+
+<img src="./Prompt_chain/img3.png" alt="chameleon" />
+
+In the above example, two prompts are chained together to create a Prompt chain. The first prompt processes an `image input` and generates a description of the image as output. This output is then passed to the second prompt, which uses the description to generate a quirky caption.
+
+# Testing a prompt chain
+To test the output of the Prompt on different evaluators, follow the steps in  <a style={{color:"#FFA500"}} href="https://www.w3schools.com">` Testing a prompt`</a>.
+
+
+
+<Cards>
+  <Card title="Single prompt" href="https://nextjs.org/docs" />
+  <Card title="Multiple prompt" href="https://fumadocs.vercel.app" />
+  <Card title="Testing a prompt" href="https://fumadocs.vercel.app" />
+
+</Cards>
