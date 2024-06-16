@@ -1,0 +1,75 @@
+---
+title: Overview
+---
+
+Evaluators are the corner stone of the Maxim platform. Evaluators are the quality and safety signals that you would want to test your application on. At Maxim we have built out an entire suit of evaluators that we make available for your testing needs off the shelf. 
+
+We have built out a lot of global standards for evaluations and made them available in the platform for your use. Our pre built evaluators contain both Maxim created evaluators as well as popular third party libraries for evaluation such as Ragas. 
+
+However we recognise that each application needs are unique so we have built the platform so as to enable you to easily create your own evaluators on the platform for your specific need. 
+
+The Maxim evaluators structure can be summed up by the pictorial representation below.
+<img src="./Library/Evaluators/Overview/img1.png" alt="http_workflow" />
+
+# Pre Built Evaluators
+We provide a lot of evaluators for you to just add to your workspace and use in your testing workflows.
+
+At Maxim our pre built evaluators are of two categories:
+
+1. **Maxim-created Evaluators**: These are evaluators created and managed by Maxim. There are 3 kinds of Maxim created evaluators
+    1. **AI Evaluators :** As the name suggests these are evaluators using other large language models to evaluate your application. 
+    2. **Statistical Evaluators:** These are traditional NLP metrics such as Blue, Rouge, WER, TER etc.
+    3. **Programmatic Evaluators:**  These are javascript functions where you have full autonomy to write your own custom logic. Some use cases that we provide out of box are validJson, validURL etc.
+2. We also have enabled popular third party libraries for evaluation on the platform so that you can use them in your testing workflows with just a few clicks. We have integration with **Ragas** which is a popular library for evaluating your RAG pipelines. We are also partnering with other evaluator libraries. If you have any custom request for integration please free to drop us a note.
+
+# Custom Evaluators
+
+While we make a lot global standard evaluators available right out of the box for your use we understand that there are sometimes application specific requirements. keeping that in mind we have created the platform to allow you to create your own evaluators very easily. 
+
+You can create any of the following evaluators. 
+
+1. **AI Evaluators :** As the name suggests these are evaluators using other Large language models to evaluate your application. You can configure the prompts and scoring strategy for your use case. 
+2. **Programmatic Evaluators:**  These are javascript functions where you have full autonomy to write your own custom logic. 
+3. **API Evaluators:** If you have fine-tuned your own model for some specific use case you can use that for your testing workflow by exposing the model using an HTTP endpoint. 
+4. **Human Evaluators:** You can create a Human evaluator with instructions. This will simply send the instruction to the human raters who you assign during test run. You can read more [here]()
+
+# Evaluator Grading
+
+You can decide what pass/fail is for your application for each evaluators. By default we have passing criteria prefilled for each evaluator but you can change it anytime from within evaluators tab under LIBRARY in the left navigation bar. 
+
+You can decide what pass fail means at each query level as well as what pass/fail mean at a report level for all the queries. 
+
+Here in the evaluator below a query is passed if it scores more than or equal to 0.8 and for the entire report the evaluator clarity will pass if 80% of the queries pass i.e. have more than or equal to 0.8.
+
+<img src="./Library/Evaluators/Overview/img2.png" alt="http_workflow" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

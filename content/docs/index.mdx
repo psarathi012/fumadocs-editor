@@ -1,32 +1,132 @@
 ---
-title: Prompt chains
-description: Layering multiple prompts to generate a final output is `Prompt chain`, where each prompt builds upon the previous one to refine the response. 
+title: Evaluator store
 ---
 
- Photos will be added after debugging
- # Create a prompt chain
-<img src="./Prompt_chain/img1.png" alt="chameleon" />
+The Evaluator Store in Maxim offers a comprehensive selection of evaluators (quality signals), including both first-party evaluators developed by Maxim and third-party evaluators including popular libraries like Ragas. Additionally, you also have the option to create custom evaluators for your own application specific need. Below is a screenshot of the store from where you can select any evaluator, add them to your workspace and use them in your testing workflow.
 
-In the above you can see two prompts chained together
+<img src="./Library/Evaluators/Evaluator_store/img1.png" alt="http_workflow" />
 
-1. Prompt 1: Given a travel itinerary model should do a function call (use Prompt tool which is configured) and return the travel cost from one city to another (example explained in <a style={{color:"#FFA500"}} href="">`Prompt tools`</a>)
-2. Prompt 2: After obtaining the travel cost from the previous prompt, it should generate a reimbursement letter to HR, including the travel cost details.
+# Maxim Built In Evaluators
 
-<img src="./Prompt_chain/img2.png" alt="chameleon" />
+Maxim offers its own suite of evaluators, which can be categorised as follows:
 
-Then you can run the prompt sequence by entering user input on the right side of the panel.
+### AI evaluators
 
-In this example, the model first calculates the travel cost from Paris to Madrid, then from Madrid to London, and finally from London to Barcelona `Prompt 1`. Subsequently, the model drafts an email to HR requesting reimbursement and includes the total travel cost `Prompt 2`.
+Maxim provides AI evaluators which uses other large language models (LLM as a judge) or Maxim fine-tuned domain specific small language models to evaluate your application output. We keep iterating over our evaluators to ensure you get access to high quality evaluators for testing your application. We are also incorporating concepts like as using an ensemble of LLMs (LLM as a jury) for application testing.
 
-# Testing a prompt chain
-<img src="./Prompt_chain/img3.png" alt="chameleon" />
+<img src="./Library/Evaluators/Evaluator_store/img2.png" alt="http_workflow" />
 
-You can evaluate the prompt chain outputs using the <a style={{color:"#FFA500"}} href="">`evaluators`</a> and review the reports from <a style={{color:"#FFA500"}} href="">`Runs`</a>.
+Examples of an AI evaluators available on Maxim is:
 
- 
-<Cards>
-  <Card title="AI Evaluators" href="https://nextjs.org/docs" />
-  <Card title="API-Based Evaluators" href="https://fumadocs.vercel.app" />
-  
-</Cards>
+#### Consistency
+
+Consistency as an evaluator ensures that the generated output remains consistent over multiple runs. If there is a high degree of variation with the same input, it indicates that your workflow is producing different outputs across these runs, suggesting a higher likelihood of hallucination.
+
+### Statistical evaluators
+
+Maxim offers a range of classic NLP evaluators, including BLEU, ROUGE, WER, TER etc  making it easy for you to integrate them into your evaluation workflows.
+<img src="./Library/Evaluators/Evaluator_store/img3.png" alt="http_workflow" />
+
+For example: \
+**BLEU**, a metric for text evaluation, gauges the quality of output by comparing it to reference texts (ground truth/expected output). It scores based on shared n-grams between machine-generated and reference texts, with higher scores indicating better alignment and therefore better output quality.
+
+### Programmatic evaluators
+<img src="./Library/Evaluators/Evaluator_store/img4.png" alt="http_workflow" />
+These evaluators are code snippets designed to validate specific criteria, such as checking for a particular keyword or verifying a correct email address.
+
+# 3rd party evaluators
+
+Maxim's evaluator store also supports third-party libraries, such as RAGAs, and integrates them seamlessly into your workflows.
+
+# Custom Evaluators on Maxim
+
+At Maxim we recognise the need to have application specific evaluators therefore the platform allows you to create your own evaluators easily. You will be able to create any AI based evaluators or programmatic evaluators. Additionally you also have ability to create API based evaluators and add human evaluators. Read more about custom evaluator [here]()
+
+<img src="./Library/Evaluators/Evaluator_store/img5.png" alt="http_workflow" />
+
+# API based evaluators
+
+You can integrate your own evaluators via API endpoints. This is helpful if you have any inhouse finetuned model or workflow to evaluate your application. You can bring those models on Maxim using Maxim’s HTTP workflow and then use this for testing.
+
+<img src="./Library/Evaluators/Evaluator_store/img6.png" alt="http_workflow" />
+# Human evaluators
+
+For teams developing on top of generative models, human evaluation is an essential step before launch. Typically, human evaluations are conducted outside the development workflows and managed through spreadsheets or documents. Maxim's human evaluators streamline this process by integrating machine and human evaluation pipelines into a unified system. Additionally, Maxim offers raters to assess your models, or you can invite your own QA team for evaluation.
+You can setup a human evaluator with instructions and choose either
+
+- Thumbs up thumbs down rating
+- Rating on a scale (0-1, 0-10 etc)
+<img src="./Library/Evaluators/Evaluator_store/img7.png" alt="http_workflow" />
+
+# Use an evaluator
+
+You can select any evaluator from the evaluator store and add it to your workspace, integrating it into your workflow or prompt by toggling the desired evaluator in the test configuration before executing a test run.
+
+<video src="https://drive.google.com/file/d/1--rVYB8u36LfZmMtyVLraZbrZYUjZ7YJ/view?usp=drive_link" alt="docs"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
