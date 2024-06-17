@@ -1,0 +1,39 @@
+---
+title: Use context in prompts/workflows
+description: RAG (Retrieval-Augmented Generation) context can be utilized in Maxim in both prompts and workflows. When a user input is provided to the model via prompts or workflows, the input is first processed by the context source API to retrieve context for your application. For prompts this retrieved context, along with the user input, is then passed to the model to ensure that the model's response takes the context into account. 
+---
+## Using context in prompts
+To add RAG context to a prompt in Maxim, navigate to the prompt configuration and select "Datasource context." This will open a dropdown menu where you can choose the appropriate context source. You can then instruct the model to use the RAG context by referencing it in the prompt with ```{context}```.
+
+<img src="./Library/context-source/context-source-use/img1.png" alt="http_workflow" />
+
+<img src="./Library/context-source/context-source-use/img2.png" alt="http_workflow" />
+
+You can then reference this in your system or user prompts using ```{context}``` .
+<img src="./Library/context-source/context-source-use/img3.png" alt="http_workflow" />
+
+This is only used in the playground. To be able to use this during test run you will have to similarly attach the context source in the test config but clicking on test and then attaching context source there.
+
+<img src="./Library/context-source/context-source-use/img4.png" alt="http_workflow" />
+
+## Using context in workflows
+
+After configuring context source we can use it in the workflow. To use context sources in workflows run the test button in the workflow. In the test config right panel you have an option to attach context sources as you can see in the picture.
+
+<img src="./Library/context-source/context-source-use/img5.png" alt="http_workflow" />
+
+This will then run the inputs of your dataset through the context source API endpoint and fetch retrieve context.
+
+## View the context in test run reports
+
+You will be able to see the retrieved context under the context column in the test run reports for your prompt/workflow tests.
+
+<img src="./Library/context-source/context-source-use/img6.png" alt="http_workflow" />
+
+
+
+
+<Cards>
+  <Card title="Overview" href="" />
+  <Card title="Connect your RAG context " href="" />
+ </Cards>
