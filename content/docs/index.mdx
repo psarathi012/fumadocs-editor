@@ -1,29 +1,98 @@
 ---
-title: Import a multimodal dataset
+title: HTTP Workflow
+description: Workflow allows you to expose your AI application to Maxim using your existing API endpoint.
 ---
 
-# Import CSV
+# Create a workflow for a public endpoint
+HTTP workflow allows you bring your applications’s API endpoint within the Maxim framework. You will need to enter the URL of the API endpoint to your AI application and if necessary, add headers and parameters needed for the API request.
+<img src="./evaluate/workflow/http_workflow/img1.png" alt="http_workflow" />
 
-- To import a dataset, click on the "Upload CSV" btton.
-<img src="./Library/Datasets/import_multimodal_dataset/img1.png" alt="http_workflow" />
-  
-To add images you will have to:
+## Setup payload
+<img src="./evaluate/workflow/http_workflow/img2.png" alt="http_workflow" />
 
-- Add a new column in your dataset.
-- Select the column type as "image".
-- Paste the image URL into the column.
-- The image will be rendered once the URL is read.
+You can then configure the payload for your API. The payload can include whatever is needed for your backend to process the request. When triggering a test run you have to attach dataset to your workflow. We allow you to use any of the column values that you have in the dataset that you would attach.
 
-<img src="./Library/Datasets/import_multimodal_dataset/img2.png" alt="http_workflow" />
+In the picture you see above notice how input in inside curly braces <code> \{input\} </code>. This indicated that its a dynamic variable which will be resolved during the test run time. This input will come from the dataset you attach. Similarly you can use any dynamic variable in the payload which will be resolved during runtime from the <a style={{color:"#FFA500"}} href="https://www.w3schools.com">dataset</a> you attach to that run.
 
-You need to add two additional columns since "input" and "expected output" columns are default. One column should be of type "image" and another should be of type "variable".
+## Map the output for evaluation
+Once configured, you can fetch the responses of the API endpoint in the playground by having some input in the input text field in the playground and then pressing the Run button. Once you receive the Response select whichever part of the response you want to evaluate and save the workflow. Like here in the above photo, we are mapping the output to data.response which is what we want to evaluate.
+<img src="./evaluate/workflow/http_workflow/img3.png" alt="http_workflow" />
 
-<img src="./Library/Datasets/import_multimodal_dataset/img3.png" alt="http_workflow" />
 
-When importing data from the example mentioned above, you will need to map the columns by specifying which column should serve as the input and which one should be designated as the expected output and map the other columns to their respective types as well.
+# Create a workflow for Local API
 
-# Upload CSV file
+```py title="api.py"
+from flask import Flask
 
-Once uploaded, you can view the dataset. From there, you can rearrange columns, delete columns, add rows, or duplicate the dataset as needed.
+# Flask constructor takes the name of 
+app = Flask(__name__)
 
-<LoomVideo url="https://drive.google.com/file/d/1iCwiUpbZLh6l5y1YEdkoHmscQmr1hM6C/preview" />
+@app.route('/rag',methods=['POST'])
+def rag_output():
+    body = request.get_json()
+    print(body)
+    output = runPrompt(body['query'])
+    response = {'response':output}
+    return response
+
+# main driver function
+if __name__ == '__main__':
+
+    # run() method of Flask class runs the application 
+    # on the local development server.
+    app.run()
+}
+```
+In this example, we have built a demo RAG application using Google’s PaLM model based on "Harry Potter and the Sorcerer's Stone - CHAPTER ONE." The application is served locally through a Flask endpoint at  <a style={{color:"#FFA500"}} href="https://www.w3schools.com">`http://127.0.0.1:5000/rag`</a> .
+
+To test your endpoint outputs on Maxim AI, you need a public API. You can achieve this by using Ngrok, which makes the endpoint public through tunnelling.
+
+
+## Setup Ngrok
+
+You can follow these steps or refer to the [Ngrok documentation](https://ngrok.com/docs/getting-started/)
+
+To install Ngrok on a Mac, use the following command:
+```sh
+brew install ngrok/ngrok/ngrok
+```
+Next, connect your Ngrok agent to your Ngrok account. If you haven't already, sign up for an Ngrok account and copy your authtoken from your Ngrok dashboard.
+
+Run the following command in your terminal to install the authtoken and connect the Ngrok agent to your account:
+```sh
+ngrok config add-authtoken <TOKEN>
+```
+
+Start ngrok by running the following command.
+```sh
+ngrok http http://localhost:5000
+```
+We assume you have a working web application listening at <code>http://localhost:5000</code> If your app is listening on a different URL, adjust the command accordingly.
+
+You will see something similar to the following console UI in your terminal.
+
+<img src="./evaluate/workflow/http_workflow/img4.png" alt="http_workflow" />
+
+
+## Bring endpoint to Maxim
+
+You can now take this forwarding URL and use it in our platform by following the steps mentioned above as now your <code>localhost</code> endpoint is now public
+
+
+<img src="./evaluate/workflow/http_workflow/img5.png" alt="http_workflow" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,33 +2,33 @@
 title: Concepts
 
 ---
-# Programmatic Evaluators
- In Maxim, you can construct Programmatic Evaluators akin to how API-based evaluators are created. These evaluators are code snippets designed to validate specific criteria, such as checking for a particular keyword or verifying a correct email address. 
+## Accounts and workspace
+Workspace is a collaborative space for your team to get started with experimenting and testing your AI application. All of the features such as prompts, workflows, data sets, context sources, evaluators, and test runs are isolated in a workspace i.e. these features are not shared across workspaces. You can have multiple workspaces associated with one account.
  
-## Creating a new workspace
+### Creating a new workspace
 You can create a new workspace by selecting the workspace dropdown in the top right corner of the screen. Click on the  <code>+ Create Workspace</code> button to create a new workspace.
 
 <img src="./concepts/img1.png" alt="chameleon" />
 
 
-## Deleting a workspace
+### Deleting a workspace
 You can delete a workspace by going into the Settings > Workspace Info. Once deleted, you will not be able to recover the workspace and all the data associated with it will be lost.
 
-# Account settings
+## Account settings
 You can head over to the account settings option from the main menu on the top-right to manage your account and workspace-level settings. You can update account-specific information, for example: account info, members, model configurations, and Maxim API keys directly from the portal. You can also update workspace settings such as workspace name.
 
-## Roles
+### Roles
 In Maxim, we have enabled fine-grained RBAC (Role Based Access Control) where you can create custom roles and specify granular access permissions per role for each feature on the platform. By default, we have a few roles and permissions pre-populated for you such as super admin, admin, contributors, etc. You can modify these roles to suit your needs. This allows for precise control over user capabilities within the platform.
 
 <img src="./concepts/img2.png" alt="chameleon" />
 
 
-## Members
+### Members
 Here you can see all members of your teams who have been invited to the account. You can invite team members to specific workspaces and assign them roles accordingly. 
 
 <img src="./concepts/img3.png" alt="chameleon" />
 
-## Model config
+### Model config
 
 At Maxim we support all open and closed source models and your own custom models through model Providers. We support almost all major model providers:
 
@@ -50,7 +50,7 @@ To use your desired model you can get started by adding your API keys in the mod
 
 <Cards>
   <Card title="Introduction" href="https://nextjs.org/docs" />
-  <Card title="Concepts" href="https://fumadocs.vercel.app" />
+  <Card title="Getting started" href="https://fumadocs.vercel.app" />
   
 </Cards>
 
