@@ -1,0 +1,19 @@
+---
+title: Overview
+description: One of the most popular use case for applications building on top of Large Language Models is building a RAG architecture. RAG enables you to give LLMs access to your data so that the answers the LLM generates are grounded in your data. 
+---
+
+The challenge however is LLMs have a habit of hallucinating which can only be controlled by having a good retriever that feeds relevant and meaningful context to the LLM from your RAG. Thus while testing the final generated output remains very important , evaluating the retrieved context is equally important if not more. 
+
+<img src="./Library/context-source/context-overview/img1.png" alt="Test report" />
+
+Context Sources in Maxim allows you to test not just your final output of your RAG but also the retrieved context. We have some relevant evaluators that does exactly that. The way you can expose your context to maxim is using a HTTP workflow. The idea is when we pass a query to the API you configure in the HTTP workflow your API request should return the retrieved context for that query that you retrieve from your vector database. Once the retrieve context is attached while testing your prompts/workflows you will get to see the retrieved context under Context column in the test runs. If you have attached context sources to your test run then you can also use evaluators that need context (evaluators with <code>Context Required</code> tag in evaluator store).
+
+
+
+
+<Cards>
+  <Card title="Connect RAG context" href="" />
+  <Card title="Use context" href="" />
+  
+</Cards>

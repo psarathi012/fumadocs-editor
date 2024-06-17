@@ -1,98 +1,39 @@
 ---
-title: HTTP Workflow
-description: Workflow allows you to expose your AI application to Maxim using your existing API endpoint.
+title: Use context in prompts/workflows
+description: RAG (Retrieval-Augmented Generation) context can be utilized in Maxim in both prompts and workflows. When a user input is provided to the model via prompts or workflows, the input is first processed by the context source API to retrieve context for your application. For prompts this retrieved context, along with the user input, is then passed to the model to ensure that the model's response takes the context into account. 
 ---
+## Using context in prompts
+To add RAG context to a prompt in Maxim, navigate to the prompt configuration and select "Datasource context." This will open a dropdown menu where you can choose the appropriate context source. You can then instruct the model to use the RAG context by referencing it in the prompt with ```{context}```.
 
-# Create a workflow for a public endpoint
-HTTP workflow allows you bring your applications’s API endpoint within the Maxim framework. You will need to enter the URL of the API endpoint to your AI application and if necessary, add headers and parameters needed for the API request.
-<img src="./evaluate/workflow/http_workflow/img1.png" alt="http_workflow" />
+<img src="./Library/context-source/context-source-use/img1.png" alt="http_workflow" />
 
-## Setup payload
-<img src="./evaluate/workflow/http_workflow/img2.png" alt="http_workflow" />
+<img src="./Library/context-source/context-source-use/img2.png" alt="http_workflow" />
 
-You can then configure the payload for your API. The payload can include whatever is needed for your backend to process the request. When triggering a test run you have to attach dataset to your workflow. We allow you to use any of the column values that you have in the dataset that you would attach.
+You can then reference this in your system or user prompts using ```{context}``` .
+<img src="./Library/context-source/context-source-use/img3.png" alt="http_workflow" />
 
-In the picture you see above notice how input in inside curly braces <code> \{input\} </code>. This indicated that its a dynamic variable which will be resolved during the test run time. This input will come from the dataset you attach. Similarly you can use any dynamic variable in the payload which will be resolved during runtime from the <a style={{color:"#FFA500"}} href="https://www.w3schools.com">dataset</a> you attach to that run.
+This is only used in the playground. To be able to use this during test run you will have to similarly attach the context source in the test config but clicking on test and then attaching context source there.
 
-## Map the output for evaluation
-Once configured, you can fetch the responses of the API endpoint in the playground by having some input in the input text field in the playground and then pressing the Run button. Once you receive the Response select whichever part of the response you want to evaluate and save the workflow. Like here in the above photo, we are mapping the output to data.response which is what we want to evaluate.
-<img src="./evaluate/workflow/http_workflow/img3.png" alt="http_workflow" />
+<img src="./Library/context-source/context-source-use/img4.png" alt="http_workflow" />
 
+## Using context in workflows
 
-# Create a workflow for Local API
+After configuring context source we can use it in the workflow. To use context sources in workflows run the test button in the workflow. In the test config right panel you have an option to attach context sources as you can see in the picture.
 
-```py title="api.py"
-from flask import Flask
+<img src="./Library/context-source/context-source-use/img5.png" alt="http_workflow" />
 
-# Flask constructor takes the name of 
-app = Flask(__name__)
+This will then run the inputs of your dataset through the context source API endpoint and fetch retrieve context.
 
-@app.route('/rag',methods=['POST'])
-def rag_output():
-    body = request.get_json()
-    print(body)
-    output = runPrompt(body['query'])
-    response = {'response':output}
-    return response
+## View the context in test run reports
 
-# main driver function
-if __name__ == '__main__':
+You will be able to see the retrieved context under the context column in the test run reports for your prompt/workflow tests.
 
-    # run() method of Flask class runs the application 
-    # on the local development server.
-    app.run()
-}
-```
-In this example, we have built a demo RAG application using Google’s PaLM model based on "Harry Potter and the Sorcerer's Stone - CHAPTER ONE." The application is served locally through a Flask endpoint at  <a style={{color:"#FFA500"}} href="https://www.w3schools.com">`http://127.0.0.1:5000/rag`</a> .
-
-To test your endpoint outputs on Maxim AI, you need a public API. You can achieve this by using Ngrok, which makes the endpoint public through tunnelling.
-
-
-## Setup Ngrok
-
-You can follow these steps or refer to the [Ngrok documentation](https://ngrok.com/docs/getting-started/)
-
-To install Ngrok on a Mac, use the following command:
-```sh
-brew install ngrok/ngrok/ngrok
-```
-Next, connect your Ngrok agent to your Ngrok account. If you haven't already, sign up for an Ngrok account and copy your authtoken from your Ngrok dashboard.
-
-Run the following command in your terminal to install the authtoken and connect the Ngrok agent to your account:
-```sh
-ngrok config add-authtoken <TOKEN>
-```
-
-Start ngrok by running the following command.
-```sh
-ngrok http http://localhost:5000
-```
-We assume you have a working web application listening at <code>http://localhost:5000</code> If your app is listening on a different URL, adjust the command accordingly.
-
-You will see something similar to the following console UI in your terminal.
-
-<img src="./evaluate/workflow/http_workflow/img4.png" alt="http_workflow" />
-
-
-## Bring endpoint to Maxim
-
-You can now take this forwarding URL and use it in our platform by following the steps mentioned above as now your <code>localhost</code> endpoint is now public
-
-
-<img src="./evaluate/workflow/http_workflow/img5.png" alt="http_workflow" />
+<img src="./Library/context-source/context-source-use/img6.png" alt="http_workflow" />
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+<Cards>
+  <Card title="Overview" href="" />
+  <Card title="Connect your RAG context " href="" />
+ </Cards>
